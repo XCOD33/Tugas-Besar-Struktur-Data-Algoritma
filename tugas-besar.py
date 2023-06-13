@@ -90,6 +90,10 @@ while answer:
                     continue
                 input_jumlah_beli = int(input("Masukkan jumlah beli = "))
                 barang = bst.exists(input_sku)
+                if barang.jumlah_stok < input_jumlah_beli:
+                    print("Stok Barang tidak cukup")
+                    continue
+                barang.jumlah_stok -= input_jumlah_beli
                 subtotal = input_jumlah_beli * barang.harga_satuan
 
                 transaksi.inputData({
@@ -107,14 +111,6 @@ while answer:
                 })
 
                 print(dataTransaksi)
-            
-            elif sub_menu_2 == "3":
-                print("\n=== Data Transaksi Berdasarkan Subtotal===\n")
-
-                # print(dataTransaksi)
-
-                transaksi.checkTransactionBySubtotal(dataTransaksi)
-                
 
             elif sub_menu_2 == "2":
                 print("\n=== Lihat Data Transaksi ===\n")
@@ -125,8 +121,19 @@ while answer:
 
                 tableTransaksi = pd.DataFrame(dataTransaksi)
                 print(tableTransaksi)
+            
+            elif sub_menu_2 == "3":
+                print("\n=== Data Transaksi Berdasarkan Subtotal===\n")
 
+                transaksi.checkTransactionBySubtotal(dataTransaksi)
+                
+            elif sub_menu_2 == "0":
+                print("\nKeluar")
+                sub_answer_2 = False
 
+            else:
+                print("Menu tidak tersedia")
+                continue
         
     elif input_menu == "0":
         print("\nKeluar")
