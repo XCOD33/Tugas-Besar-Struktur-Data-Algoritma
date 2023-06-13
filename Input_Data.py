@@ -1,5 +1,5 @@
 class BSTNode:
-  def __init__(self, barang):
+  def __init__(self, barang = {}):
     self.left = None
     self.right = None
     self.sku = barang['sku']
@@ -15,7 +15,9 @@ class BSTNode:
       self.jumlah_stok = barang['jumlah_stok']
       return
     if self.sku == barang['sku']:
+      print("\nSKU sudah ada")
       return
+    print("\nSKU telah dimasukkan")
     if barang['sku'] < self.sku:
       if self.left:
         self.left.insert(barang)
@@ -46,31 +48,3 @@ class BSTNode:
     if self.right is not None:
       self.right.inorder(barangs)
     return barangs
-  
-dict1 = {
-  "sku": 5,
-  "nama_barang": "Buku Tulis Sidu",
-  "harga_satuan": 2000,
-  "jumlah_stok": 10,
-}
-
-dict2 = {
-  "sku": 3,
-  "nama_barang": "Bolpoin",
-  "harga_satuan": 5000,
-  "jumlah_stok": 1,
-}
-
-dict3 = {
-  "sku": 2,
-  "nama_barang": "Penghapus",
-  "harga_satuan": 1000,
-  "jumlah_stok": 5,
-}
-  
-r = BSTNode(dict1)
-# r.insert(dict1)
-r.insert(dict2)
-r.insert(dict3)
-# r.insert(dict3)
-print(r.inorder([]))
