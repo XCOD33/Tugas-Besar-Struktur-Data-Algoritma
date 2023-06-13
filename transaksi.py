@@ -4,113 +4,42 @@ class Transaksi:
         self.no_sku = no_sku
         self.jumlah_beli = jumlah_beli
         self.subtotal = subtotal
+        
 
     def inputData():
-        print('input')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    def checkAllTransaction():
-        data_transaksi = []
-        print("=== Data Seluruh Transaksi Konsumen ===")
-        if len(data_transaksi) == 0:
-            print("Belum ada data transaksi.")
+        input_nama = input("Masukkan Nama = ")
+        input_no_sku = input("Masukkan SKU = ")
+        input_jml = int(input("Masukkan Jumlah = "))
+        subtotal = input_jml * 1000
+        data = Transaksi(input_nama, input_no_sku, input_jml, subtotal)
+
+        return data
+
+    def checkAllTransactions(transactions):
+        pass
+
+    def checkTransactionBySubtotal(transactions):
+        if len(transactions) == 0:
+            print("Belum ada data transaksi")
         else:
-            for transaksi in data_transaksi:
-                nama_konsumen, sku_barang, jumlah_beli, subtotal = transaksi
-                print("Nama Konsumen:", nama_konsumen)
-                print("No. SKU Barang:", sku_barang)
-                print("Jumlah Beli:", jumlah_beli)
-                print("Subtotal:", subtotal)
-                print("---------------------------------------------------------------")
-        # return 
+            def bubble_sort(arr):
+                n = len(arr)
+                for i in range(n - 1):
+                    for j in range(n - i - 1):
+                        if arr[j].subtotal < arr[j + 1].subtotal:
+                            arr[j], arr[j + 1] = arr[j + 1], arr[j]
+            
+            def display_transaksi(transactions):
+                print("Data transaksi konsumen:")
+                print("Nama Konsumen\tNo. SKU barang\tJumlah Beli\tSubtotal")
+                for transaction in transactions:
+                    print("{}\t\t{}\t\t{}\t\t{}".format(transaction.nama_konsumen, transaction.no_sku, transaction.jumlah_beli, transaction.subtotal))
 
-    def checkTransactionBySubtotal():
-        print('input')
+            bubble_sort(transactions)
+            display_transaksi(transactions)
+
+t = Transaksi('Sugeng', 'SKU001', 5, 100000)
+t1 = Transaksi('Sogong', 'SKU002', 2, 350000)
+transactions = [t,t1]
+print(len(transactions))
+Transaksi.checkTransactionBySubtotal(transactions)
