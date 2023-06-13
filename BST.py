@@ -38,6 +38,9 @@ class BSTNode:
     if sku == self.sku:
       return True
     
+    if not self.sku:
+      return False
+    
     if sku < self.sku:
       if self.left == None:
         return False
