@@ -1,3 +1,5 @@
+from transaksi import Transaksi
+tes = Transaksi("aa", 99, 2, 22)
 answer = True
 
 while answer:
@@ -14,6 +16,9 @@ while answer:
         print("\n Kelola Stok Barang")
     elif input_menu == "2":
         print("\n Kelola Transaksi Konsumen")
+        transaksi = []
+        transaksi.append(Transaksi.inputData())
+        Transaksi.checkTransactionBySubtotal(transaksi)
     elif input_menu == "0":
         print("\n Keluar")
         answer = False
