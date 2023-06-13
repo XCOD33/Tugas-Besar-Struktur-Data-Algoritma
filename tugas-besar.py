@@ -76,7 +76,7 @@ while answer:
         sub_answer_2 = True
 
         while sub_answer_2:
-            print("\nKelola Transaksi\n1) Input Data Transaksi\n2) Lihat Data Seluruh Transaksi Konsumen\n 3)Lihat Data Transaksi Berdasarkan Subtotal\n0) Keluar\n")
+            print("\nKelola Transaksi\n1) Input Data Transaksi\n2) Lihat Data Seluruh Transaksi Konsumen\n3) Lihat Data Transaksi Berdasarkan Subtotal\n0) Keluar\n")
 
             sub_menu_2 = input("Masukkan Menu : ")
 
@@ -115,6 +115,16 @@ while answer:
 
                 transaksi.checkTransactionBySubtotal(dataTransaksi)
                 
+
+            elif sub_menu_2 == "2":
+                print("\n=== Lihat Data Transaksi ===\n")
+
+                if not dataTransaksi :
+                    print("Belum ada data transaksi.")
+                    continue
+
+                tableTransaksi = pd.DataFrame(dataTransaksi)
+                print(tableTransaksi)
 
 
         

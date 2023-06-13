@@ -1,3 +1,4 @@
+import pandas as pd
 class Transaksi:
     def __init__(self, transaksi = {}):
         self.nama_konsumen = transaksi['nama_konsumen']
@@ -16,8 +17,19 @@ class Transaksi:
         
         print("Transaksi berhasil ditambahkan")
 
-    def checkAllTransactions(transactions):
-        pass
+    def checkAllTransactions(self, transactions):
+        if len(transactions) == 0:
+            print("Belum ada data transaksi")
+        else:
+            print("Data transaksi konsumen:")
+            print("Nama Konsumen\tNo. SKU barang\tJumlah Beli\tSubtotal")
+            for transaction in transactions:
+                print("{}\t\t{}\t\t{}\t\t{}".format(
+                    transaction.nama_konsumen,
+                    transaction.no_sku,
+                    transaction.jumlah_beli,
+                    transaction.subtotal
+                ))
 
     def checkTransactionBySubtotal(self, transactions):
         if len(transactions) == 0:
