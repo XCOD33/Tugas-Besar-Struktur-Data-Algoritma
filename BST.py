@@ -92,4 +92,6 @@ dict4 = {
 r = BSTNode(dict1)
 r.insert(dict2)
 r.insert(dict3)
-print(r.exists(1111))
+# r.insert(dict3)
+# print(r.inorder([]))
+print(r)

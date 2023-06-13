@@ -4,104 +4,20 @@ class Transaksi:
         self.no_sku = no_sku
         self.jumlah_beli = jumlah_beli
         self.subtotal = subtotal
+        
 
     def inputData():
-        print('input')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    def checkAllTransaction():
-        data_transaksi = []
-        print("=== Data Seluruh Transaksi Konsumen ===")
-        if len(data_transaksi) == 0:
-            print("Belum ada data transaksi.")
+        input_nama = input("Masukkan Nama = ")
+        input_no_sku = input("Masukkan SKU = ")
+        input_jml = int(input("Masukkan Jumlah = "))
+        subtotal = input_jml * 1000
+        data = Transaksi(input_nama, input_no_sku, input_jml, subtotal)
+
+        return data
+
+    def checkTransactionBySubtotal(transactions):
+        if len(transactions) == 0:
+            print("Belum ada data transaksi")
         else:
             for transaksi in data_transaksi:
                 nama_konsumen, sku_barang, jumlah_beli, subtotal = transaksi
@@ -111,3 +27,6 @@ class Transaksi:
                 print("Subtotal:", subtotal)
                 print("---------------------------------------------------------------")
         # return 
+
+    def checkTransactionBySubtotal():
+        print('input')
