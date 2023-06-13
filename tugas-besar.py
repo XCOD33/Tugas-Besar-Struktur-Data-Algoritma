@@ -42,6 +42,7 @@ while answer:
                     "harga_satuan": input_harga_satuan,
                     "jumlah_stok": input_jumlah_stok,
                 })
+                print(bst.inorder([]))
                 
             elif(sub_menu_1 == "2"):
                 print("\n=== Restok Barang ===\n")
