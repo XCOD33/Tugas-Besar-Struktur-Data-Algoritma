@@ -29,11 +29,26 @@ class BSTNode:
       return
     self.right = BSTNode(barang)
     
-  def get_min(self):
-    current = self
-    while current.left is not None:
-      current = current.left
-    return current.sku
+  def exists(self, sku):
+    if sku == self.sku:
+      return True
+    
+    if sku < self.sku:
+      if self.left == None:
+        return False
+      return self.left.exists(sku)
+    
+    if self.right == None:
+      return False
+    return self.right.exists(sku)
+  
+  def restok_barang(self, sku, jumlah_stok):
+    if self.exists(sku):
+      self.jumlah_stok += jumlah_stok
+      print("\nBarang berhasil di restok")
+      return
+    print("\nSKU tidak ditemukan")
+    return  
     
   def inorder(self, barangs):
     if self.left is not None:
@@ -48,3 +63,33 @@ class BSTNode:
     if self.right is not None:
       self.right.inorder(barangs)
     return barangs
+  
+dict1 = {
+  "sku": 0000,
+  "nama_barang": "AAA",
+  "harga_satuan": 1000,
+  "jumlah_stok": 10,
+}
+dict2 = {
+  "sku": 1111,
+  "nama_barang": "BBBB",
+  "harga_satuan": 2000,
+  "jumlah_stok": 20,
+}
+dict3 = {
+  "sku": 22222,
+  "nama_barang": "CCC",
+  "harga_satuan": 3000,
+  "jumlah_stok": 30,
+}
+dict4 = {
+  "sku": 1111,
+  "nama_barang": "DDD",
+  "harga_satuan": 4000,
+  "jumlah_stok": 40,
+}
+
+r = BSTNode(dict1)
+r.insert(dict2)
+r.insert(dict3)
+print(r.exists(1111))
