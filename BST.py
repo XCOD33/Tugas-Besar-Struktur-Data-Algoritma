@@ -36,7 +36,7 @@ class BSTNode:
     
   def exists(self, sku):
     if sku == self.sku:
-      return True
+      return self
     
     if not self.sku:
       return False
@@ -52,9 +52,11 @@ class BSTNode:
   
   def restok_barang(self, sku, jumlah_stok):
     if self.exists(sku):
-      self.jumlah_stok += jumlah_stok
-      print("\nBarang berhasil di restok")
-      return
+      barang = self.exists(sku)
+      if barang:
+        barang.jumlah_stok += jumlah_stok
+        print("\nBarang berhasil di restok")
+        return
     print("\nSKU tidak ditemukan")
     return  
     

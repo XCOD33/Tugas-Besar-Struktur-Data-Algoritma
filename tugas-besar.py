@@ -1,4 +1,5 @@
 from BST import BSTNode
+import pandas as pd
 
 bst = BSTNode()
 
@@ -14,7 +15,7 @@ while answer:
         sub_answer_1 = True
         
         while sub_answer_1:
-            print("\nKelola Stok Barang\n1) Input Data Stok Barang\n2) Restok Barang\n0) Keluar\n")
+            print("\nKelola Stok Barang\n1) Input Data Stok Barang\n2) Restok Barang\n3) Daftar Barang\n0) Keluar\n")
             
             sub_menu_1 = input("Masukkan Menu : ")
             
@@ -49,7 +50,10 @@ while answer:
                     continue
                 input_jumlah_stok = int(input("Masukkan Jumlah Stok : "))
                 bst.restok_barang(input_sku, input_jumlah_stok)
-                print(bst.inorder([]))
+                
+            elif(sub_menu_1 == "3"):
+                df = pd.DataFrame(bst.inorder([]), columns=['sku', 'nama_barang', 'harga_satuan', 'jumlah_stok'])
+                print(f"\nDaftar Transaksi\n{df}\n")
                 
             elif(sub_menu_1 == "0"):
                 print("\nKeluar\n")
