@@ -1,11 +1,6 @@
 from BST import BSTNode
 
-bst = BSTNode({
-    "sku": 0000,
-    "nama_barang": "",
-    "harga_satuan": 0,
-    "jumlah_stok": 0,
-})
+bst = BSTNode()
 
 answer = True
 
@@ -30,6 +25,9 @@ while answer:
                 
                 if len(str(input_sku)) < 4 or len(str(input_sku)) > 4:
                     print("\nSKU harus 4 digit")
+                    continue
+                if bst.exists(input_sku) == True:
+                    print("\nSKU sudah ada")
                     continue
                 
                 input_nama_barang = input("Masukkan Nama Barang : ")
