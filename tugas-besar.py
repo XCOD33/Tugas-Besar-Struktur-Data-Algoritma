@@ -80,7 +80,7 @@ while answer:
 
             sub_menu_2 = input("Masukkan Menu : ")
 
-            if sub_answer_2 == 1:
+            if sub_menu_2 == "1":
                 print("\n=== Input Data Transaksi ===\n")
 
                 input_nama_konsumen = input("Masukkan nama konsumen = ")
@@ -107,6 +107,14 @@ while answer:
                 })
 
                 print(dataTransaksi)
+            
+            elif sub_menu_2 == "3":
+                print("\n=== Data Transaksi Berdasarkan Subtotal===\n")
+
+                # print(dataTransaksi)
+
+                transaksi.checkTransactionBySubtotal(dataTransaksi)
+                
 
 
         
