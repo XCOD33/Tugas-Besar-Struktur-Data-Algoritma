@@ -111,6 +111,3 @@ class Transaksi:
                 print("Subtotal:", subtotal)
                 print("---------------------------------------------------------------")
         # return 
-
-    def checkTransactionBySubtotal():
-        print('input')
