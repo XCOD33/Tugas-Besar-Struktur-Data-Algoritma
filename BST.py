@@ -1,11 +1,16 @@
 class BSTNode:
-  def __init__(self, barang = {}):
+  def __init__(self, barang = None):
     self.left = None
     self.right = None
-    self.sku = barang['sku']
-    self.nama_barang = barang['nama_barang']
-    self.harga_satuan = barang['harga_satuan']
-    self.jumlah_stok = barang['jumlah_stok']
+    self.sku = None
+    self.nama_barang = None
+    self.harga_satuan = None
+    self.jumlah_stok = None
+    if barang:
+      self.sku = barang['sku']
+      self.nama_barang = barang['nama_barang']
+      self.harga_satuan = barang['harga_satuan']
+      self.jumlah_stok = barang['jumlah_stok']
     
   def insert(self, barang):
     if not self.sku:
@@ -31,7 +36,10 @@ class BSTNode:
     
   def exists(self, sku):
     if sku == self.sku:
-      return True
+      return self
+    
+    if not self.sku:
+      return False
     
     if sku < self.sku:
       if self.left == None:
@@ -44,9 +52,11 @@ class BSTNode:
   
   def restok_barang(self, sku, jumlah_stok):
     if self.exists(sku):
-      self.jumlah_stok += jumlah_stok
-      print("\nBarang berhasil di restok")
-      return
+      barang = self.exists(sku)
+      if barang:
+        barang.jumlah_stok += jumlah_stok
+        print("\nBarang berhasil di restok")
+        return
     print("\nSKU tidak ditemukan")
     return  
     
@@ -64,34 +74,32 @@ class BSTNode:
       self.right.inorder(barangs)
     return barangs
   
-dict1 = {
-  "sku": 0000,
-  "nama_barang": "AAA",
-  "harga_satuan": 1000,
-  "jumlah_stok": 10,
-}
-dict2 = {
-  "sku": 1111,
-  "nama_barang": "BBBB",
-  "harga_satuan": 2000,
-  "jumlah_stok": 20,
-}
-dict3 = {
-  "sku": 22222,
-  "nama_barang": "CCC",
-  "harga_satuan": 3000,
-  "jumlah_stok": 30,
-}
-dict4 = {
-  "sku": 1111,
-  "nama_barang": "DDD",
-  "harga_satuan": 4000,
-  "jumlah_stok": 40,
-}
+# dict1 = {
+#   "sku": 0000,
+#   "nama_barang": "AAA",
+#   "harga_satuan": 1000,
+#   "jumlah_stok": 10,
+# }
+# dict2 = {
+#   "sku": 1111,
+#   "nama_barang": "BBBB",
+#   "harga_satuan": 2000,
+#   "jumlah_stok": 20,
+# }
+# dict3 = {
+#   "sku": 22222,
+#   "nama_barang": "CCC",
+#   "harga_satuan": 3000,
+#   "jumlah_stok": 30,
+# }
+# dict4 = {
+#   "sku": 1111,
+#   "nama_barang": "DDD",
+#   "harga_satuan": 4000,
+#   "jumlah_stok": 40,
+# }
 
-r = BSTNode(dict1)
-r.insert(dict2)
-r.insert(dict3)
+# r = BSTNode(dict1)
+# r.insert(dict2)
 # r.insert(dict3)
-# print(r.inorder([]))
-print(r)
+# print(r.exists(1111))

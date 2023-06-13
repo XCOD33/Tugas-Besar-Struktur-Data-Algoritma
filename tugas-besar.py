@@ -1,12 +1,8 @@
 from BST import BSTNode
 from transaksi import Transaksi
+import pandas as pd
 
-bst = BSTNode({
-    "sku": 0000,
-    "nama_barang": "",
-    "harga_satuan": 0,
-    "jumlah_stok": 0,
-})
+bst = BSTNode()
 
 transaksi = Transaksi({
     "nama_konsumen": "",
@@ -28,7 +24,7 @@ while answer:
         sub_answer_1 = True
         
         while sub_answer_1:
-            print("\nKelola Stok Barang\n1) Input Data Stok Barang\n2) Restok Barang\n0) Keluar\n")
+            print("\nKelola Stok Barang\n1) Input Data Stok Barang\n2) Restok Barang\n3) Daftar Barang\n0) Keluar\n")
             
             sub_menu_1 = input("Masukkan Menu : ")
             
@@ -39,6 +35,9 @@ while answer:
                 
                 if len(str(input_sku)) < 4 or len(str(input_sku)) > 4:
                     print("\nSKU harus 4 digit")
+                    continue
+                if bst.exists(input_sku) == True:
+                    print("\nSKU sudah ada")
                     continue
                 
                 input_nama_barang = input("Masukkan Nama Barang : ")
@@ -61,7 +60,10 @@ while answer:
                     continue
                 input_jumlah_stok = int(input("Masukkan Jumlah Stok : "))
                 bst.restok_barang(input_sku, input_jumlah_stok)
-                print(bst.inorder([]))
+                
+            elif(sub_menu_1 == "3"):
+                df = pd.DataFrame(bst.inorder([]), columns=['sku', 'nama_barang', 'harga_satuan', 'jumlah_stok'])
+                print(f"\nDaftar Transaksi\n{df}\n")
                 
             elif(sub_menu_1 == "0"):
                 print("\nKeluar\n")
@@ -88,7 +90,7 @@ while answer:
                     continue
                 input_jumlah_beli = int(input("Masukkan jumlah beli = "))
                 barang = bst.exists(input_sku)
-                subtotal = input_jumlah_beli * barang['harga_satuan']
+                subtotal = input_jumlah_beli * barang.harga_satuan
 
                 transaksi.inputData({
                     "nama_konsumen": input_nama_konsumen,
