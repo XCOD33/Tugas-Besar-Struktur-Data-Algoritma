@@ -84,33 +84,46 @@ while answer:
                 print("\n=== Input Data Transaksi ===\n")
 
                 input_nama_konsumen = input("Masukkan nama konsumen = ")
-                input_sku = input("Masukkan SKU Barang : ")
-                if bst.exists(input_sku) == False:
-                    print("\nSKU tidak ditemukan")
-                    continue
-                input_jumlah_beli = int(input("Masukkan jumlah beli = "))
-                barang = bst.exists(input_sku)
-                if barang.jumlah_stok < input_jumlah_beli:
-                    print("Stok Barang tidak cukup")
-                    continue
-                barang.jumlah_stok -= input_jumlah_beli
-                subtotal = input_jumlah_beli * barang.harga_satuan
+                
+                input_sku_answer = True
+                while input_sku_answer:
+                    input_sku = input("Masukkan SKU Barang : ")
+                    if bst.exists(input_sku) == False:
+                        print("\nNo. SKU yang diinputkan belum terdaftar")
+                        input_lanjut_transaksi = input("Apakah ingin melanjutkan transaksi (Y/N)? : ")
+                        if input_lanjut_transaksi == "Y" or input_lanjut_transaksi == "y":
+                            continue
+                        break
+                    break
+                input_jumlah_beli_answer = True
+                while input_jumlah_beli_answer:
+                    input_jumlah_beli = int(input("Masukkan jumlah beli = "))
+                    barang = bst.exists(input_sku)
+                    if barang.jumlah_stok < input_jumlah_beli:
+                        print("Jumlah Stok No.SKU yang Anda beli tidak mencukupi")
+                        input_lanjut_transaksi = input("Apakah ingin melanjutkan transaksi (Y/N)? : ")
+                        if input_lanjut_transaksi == "Y" or input_lanjut_transaksi == "y":
+                            continue
+                        break
+                    barang.jumlah_stok -= input_jumlah_beli
+                    subtotal = input_jumlah_beli * barang.harga_satuan
 
-                transaksi.inputData({
-                    "nama_konsumen": input_nama_konsumen,
-                    "no_sku": input_sku,
-                    "jumlah_beli": input_jumlah_beli,
-                    "subtotal": subtotal
-                })
+                    transaksi.inputData({
+                        "nama_konsumen": input_nama_konsumen,
+                        "no_sku": input_sku,
+                        "jumlah_beli": input_jumlah_beli,
+                        "subtotal": subtotal
+                    })
 
-                dataTransaksi.append({
-                    "nama_konsumen": input_nama_konsumen,
-                    "no_sku": input_sku,
-                    "jumlah_beli": input_jumlah_beli,
-                    "subtotal": subtotal
-                })
+                    dataTransaksi.append({
+                        "nama_konsumen": input_nama_konsumen,
+                        "no_sku": input_sku,
+                        "jumlah_beli": input_jumlah_beli,
+                        "subtotal": subtotal
+                    })
 
-                print(dataTransaksi)
+                    print(dataTransaksi)
+                    break
 
             elif sub_menu_2 == "2":
                 print("\n=== Lihat Data Transaksi ===\n")
