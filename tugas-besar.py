@@ -87,53 +87,54 @@ while answer:
                 
                 input_sku_answer = True
                 while input_sku_answer:
-                    input_sku = input("Masukkan SKU Barang : ")
-                    if bst.exists(input_sku) == False:
-                        print("\nNo. SKU yang diinputkan belum terdaftar")
-                        input_lanjut_transaksi = input("Apakah ingin melanjutkan transaksi (Y/N)? : ")
-                        if input_lanjut_transaksi == "Y" or input_lanjut_transaksi == "y":
-                            continue
+                    while input_sku_answer:
+                        input_sku = input("Masukkan SKU Barang : ")
+                        if bst.exists(input_sku) == False:
+                            print("\nNo. SKU yang diinputkan belum terdaftar")
+                            input_lanjut_transaksi = input("Apakah ingin melanjutkan transaksi (Y/N)? : ")
+                            if input_lanjut_transaksi == "Y" or input_lanjut_transaksi == "y":
+                                continue
+                            break
                         break
-                    break
-                input_jumlah_beli_answer = True
-                while input_jumlah_beli_answer:
-                    input_jumlah_beli = int(input("Masukkan jumlah beli = "))
-                    barang = bst.exists(input_sku)
-                    if barang.jumlah_stok < input_jumlah_beli:
-                        print("Jumlah Stok No.SKU yang Anda beli tidak mencukupi")
-                        input_lanjut_transaksi = input("Apakah ingin melanjutkan transaksi (Y/N)? : ")
-                        if input_lanjut_transaksi == "Y" or input_lanjut_transaksi == "y":
-                            continue
+                    input_jumlah_beli_answer = True
+                    while input_jumlah_beli_answer:
+                        input_jumlah_beli = int(input("Masukkan jumlah beli = "))
+                        barang = bst.exists(input_sku)
+                        if barang.jumlah_stok < input_jumlah_beli:
+                            print("Jumlah Stok No.SKU yang Anda beli tidak mencukupi")
+                            input_lanjut_transaksi = input("Apakah ingin melanjutkan transaksi (Y/N)? : ")
+                            if input_lanjut_transaksi == "Y" or input_lanjut_transaksi == "y":
+                                continue
+                            break
+                        barang.jumlah_stok -= input_jumlah_beli
+                        subtotal = input_jumlah_beli * barang.harga_satuan
+
+                        transaksi.inputData({
+                            "nama_konsumen": input_nama_konsumen,
+                            "no_sku": input_sku,
+                            "jumlah_beli": input_jumlah_beli,
+                            "subtotal": subtotal
+                        })
+
+                        dataTransaksi.append({
+                            "nama_konsumen": input_nama_konsumen,
+                            "no_sku": input_sku,
+                            "jumlah_beli": input_jumlah_beli,
+                            "subtotal": subtotal
+                        })
+
+                        print('\nData Transaksi Konsumen Berhasil Diinputkan\n')
+                        print(dataTransaksi)
                         break
-                    barang.jumlah_stok -= input_jumlah_beli
-                    subtotal = input_jumlah_beli * barang.harga_satuan
-
-                    transaksi.inputData({
-                        "nama_konsumen": input_nama_konsumen,
-                        "no_sku": input_sku,
-                        "jumlah_beli": input_jumlah_beli,
-                        "subtotal": subtotal
-                    })
-
-                    dataTransaksi.append({
-                        "nama_konsumen": input_nama_konsumen,
-                        "no_sku": input_sku,
-                        "jumlah_beli": input_jumlah_beli,
-                        "subtotal": subtotal
-                    })
-
-                    print(dataTransaksi)
+                    input_tambah_beli = input('Apakah ingin menambahkan data pembelian untuk konsumen ini (Y/N)? : ')
+                    if input_tambah_beli == "Y" or input_tambah_beli == "y":
+                        continue
                     break
 
             elif sub_menu_2 == "2":
                 print("\n=== Lihat Data Transaksi ===\n")
 
-                if not dataTransaksi :
-                    print("Belum ada data transaksi.")
-                    continue
-
-                tableTransaksi = pd.DataFrame(dataTransaksi)
-                print(tableTransaksi)
+                transaksi.checkAllTransactions(dataTransaksi)
             
             elif sub_menu_2 == "3":
                 print("\n=== Data Transaksi Berdasarkan Subtotal===\n")

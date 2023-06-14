@@ -25,10 +25,10 @@ class Transaksi:
             print("Nama Konsumen\tNo. SKU barang\tJumlah Beli\tSubtotal")
             for transaction in transactions:
                 print("{}\t\t{}\t\t{}\t\t{}".format(
-                    transaction.nama_konsumen,
-                    transaction.no_sku,
-                    transaction.jumlah_beli,
-                    transaction.subtotal
+                    transaction['nama_konsumen'],
+                    transaction['no_sku'],
+                    transaction['jumlah_beli'],
+                    transaction['subtotal']
                 ))
 
     def checkTransactionBySubtotal(self, transactions):
