@@ -50,9 +50,3 @@ class Transaksi:
 
             bubble_sort(transactions)
             display_transaksi(transactions)
-
-# t = Transaksi('Sugeng', 'SKU001', 5, 100000)
-# t1 = Transaksi('Sogong', 'SKU002', 2, 350000)
-# transactions = [t,t1]
-# print(len(transactions))
-# Transaksi.checkTransactionBySubtotal(transactions)
